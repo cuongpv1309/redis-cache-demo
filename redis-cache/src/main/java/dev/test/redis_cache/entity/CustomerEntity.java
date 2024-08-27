@@ -1,5 +1,6 @@
 package dev.test.redis_cache.entity;
 
+import dev.test.redis_cache.redis.UserRedis;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -12,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "customer")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerEntity implements Serializable {
+public class CustomerEntity extends UserRedis implements Serializable {
 
     @Id
     @Column(name = "id")
