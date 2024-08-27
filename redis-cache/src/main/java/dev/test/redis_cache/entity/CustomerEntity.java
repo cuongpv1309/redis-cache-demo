@@ -13,7 +13,7 @@ import java.io.Serializable;
 @Table(name = "customer")
 @AllArgsConstructor
 @NoArgsConstructor
-public class CustomerEntity extends UserRedis implements Serializable {
+public class CustomerEntity implements Serializable {
 
     @Id
     @Column(name = "id")

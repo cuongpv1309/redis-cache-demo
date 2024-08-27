@@ -44,23 +44,19 @@ public class RedisCacheApplication {
 
 	@GetMapping("/{id}")
 	public CustomerDTO getCustomer(@PathVariable Long id) {
-//		return customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found customer with id: " + id));
 		UserRedis userRedis = redisRepository.findById(id).orElse(null);
 		if(userRedis == null) {
-			CustomerEntity c = customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found customer with id: " + id));
+			CustomerEntity c = customerRepository.findById(id).orElseThrow(() ->new RuntimeException("Not found customer with id: " + id));
 			return new CustomerDTO(c);
-
 		}
 		return new CustomerDTO(userRedis);
-//		return redisRepository.findById(id).orElse(customerRepository.findById(id).orElseThrow(() -> new RuntimeException("Not found customer with id: " + id)));
 	}
 
-//	@PostMapping("")
-//	public CustomerEntity save(@RequestBody CustomerEntity customer) {
-//		System.out.println(customer);
-//		return customerRepository.save(customer);
-//	}
-//
+	@PostMapping("")
+	public CustomerEntity save(@RequestBody CustomerEntity customer) {
+		return customerRepository.save(customer);
+	}
+
 //	@PostMapping("/redis")
 //	public UserRedis save2Redis(@RequestBody UserRedis userRedis) {
 //		return redisRepository.save(userRedis);
